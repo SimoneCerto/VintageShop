@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Negozio Online Professionale</title>
+<style>
+  /* Inserisci qui tutto il CSS che ti ho dato prima */
+  /* ...CSS qui... */
+  /* Per esempio: */
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f5f7fa; color: #333; }
+  header { background-color: #004d99; color: white; padding: 1.5rem 2rem; text-align: center; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+  main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center; }
+  .products { flex: 2 1 600px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .product-card { background: white; border-radius: 10px; box-shadow: 0 3px 8px rgb(0 0 0 / 0.1); padding: 1rem; display: flex; flex-direction: column; align-items: center; transition: transform 0.2s ease; }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 7px 15px rgb(0 0 0 / 0.15); }
+  .product-card img { width: 100%; border-radius: 10px; object-fit: cover; }
+  .product-info { width: 100%; padding-top: 0.75rem; text-align: center; }
+  .product-title { font-weight: 700; font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .product-price { color: #008000; font-weight: 600; font-size: 1.15rem; margin-bottom: 0.75rem; }
+  button.buy-btn { background-color: #007bff; color: white; border: none; padding: 0.7rem 1.5rem; font-size: 1rem; border-radius: 6px; cursor: pointer; width: 100%; transition: background-color 0.3s ease; }
+  button.buy-btn:hover { background-color: #0056b3; }
+  aside.controls { flex: 1 1 300px; background: white; border-radius: 10px; box-shadow: 0 3px 8px rgb(0 0 0 / 0.1); padding: 1.5rem; height: fit-content; }
+  aside.controls h2 { margin-top: 0; margin-bottom: 1rem; font-weight: 700; font-size: 1.5rem; color: #004d99; }
+  .control-group { margin-bottom: 1.25rem; }
+  label { display: block; font-weight: 600; margin-bottom: 0.3rem; }
+  input[type="number"] { width: 100%; padding: 0.5rem; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; transition: border-color 0.3s ease; }
+  input[type="number"]:focus { border-color: #004d99; outline: none; }
+  @media (max-width: 768px) { main { flex-direction: column; padding: 0 1rem; } aside.controls { margin-top: 2rem; width: 100%; } }
+</style>
+</head>
+<body>
+<header>
+  Negozio Online Professionale
+</header>
+<main>
+  <section class="products" aria-label="Lista prodotti">
+    <article class="product-card" data-id="1">
+      <img src="https://via.placeholder.com/300x200" alt="Immagine prodotto 1" />
+      <div class="product-info">
+        <h3 class="product-title">Prodotto 1</h3>
+        <p class="product-price" id="price-1">€29.99</p>
+        <button class="buy-btn" aria-label="Acquista Prodotto 1">Acquista</button>
+      </div>
+    </article>
+    <article class="product-card" data-id="2">
+      <img src="https://via.placeholder.com/300x200" alt="Immagine prodotto 2" />
+      <div class="product-info">
+        <h3 class="product-title">Prodotto 2</h3>
+        <p class="product-price" id="price-2">€49.99</p>
+        <button class="buy-btn" aria-label="Acquista Prodotto 2">Acquista</button>
+      </div>
+    </article>
+  </section>
+
+  <aside class="controls" aria-label="Controlli per modificare i prezzi">
+    <h2>Modifica Prezzi</h2>
+    <div class="control-group">
+      <label for="inputPrice1">Prezzo Prodotto 1</label>
+      <input type="number" id="inputPrice1" value="29.99" min="0" step="0.01" />
+    </div>
+    <div class="control-group">
+      <label for="inputPrice2">Prezzo Prodotto 2</label>
+      <input type="number" id="inputPrice2" value="49.99" min="0" step="0.01" />
+    </div>
+  </aside>
+</main>
+<script>
+  const inputPrice1 = document.getElementById('inputPrice1');
+  const inputPrice2 = document.getElementById('inputPrice2');
+  const price1 = document.getElementById('price-1');
+  const price2 = document.getElementById('price-2');
+  function updatePrice1() {
+    const val = parseFloat(inputPrice1.value);
+    if (!isNaN(val) && val >= 0) {
+      price1.textContent = '€' + val.toFixed(2);
+    }
+  }
+  function updatePrice2() {
+    const val = parseFloat(inputPrice2.value);
+    if (!isNaN(val) && val >= 0) {
+      price2.textContent = '€' + val.toFixed(2);
+    }
+  }
+  inputPrice1.addEventListener('input', updatePrice1);
+  inputPrice2.addEventListener('input', updatePrice2);
+</script>
+</body>
+</html>
